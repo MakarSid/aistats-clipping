@@ -48,7 +48,7 @@ def noise_scale(magnitude, noise):
 
 
 def sgd_parameters(n, noise, beta=0.05, L=1.0, R=1.0):
-    """Theorem 6"""
+    """Theorem 5.1"""
     alpha, s0, s1 = noise.alpha, noise.sigma0, noise.sigma1
     ell = math.log(4 * n / beta)
     denominator = n * s0**alpha + 2**(alpha / 2) * s1**alpha * (L * R)**alpha
@@ -409,7 +409,7 @@ def experiment1(args):
 def experiment2(args):
     noise = Noise(alpha=args.alpha)
     n = log_grid(args.n2_min, args.n2, args.horizons)
-    labels = [rf"Fixed $\lambda={lam:g}$" for lam in CLIPPING_LEVELS] + [r"Theorem 6 $\lambda(n)$"]
+    labels = [rf"Fixed $\lambda={lam:g}$" for lam in CLIPPING_LEVELS] + [r"Theorem 5.1 $\lambda(n)$"]
     samples = np.empty((len(labels), len(n), args.runs))
     settings = []
     for j, calls in enumerate(n):
